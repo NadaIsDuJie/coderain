@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑客代码雨</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        canvas {
+
+            background-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        var arrIndex = [];
+        var winWidth = window.innerWidth;
+        var winHeight = window.innerHeight;
+        var fontSize = 36;
+        var fontNum = winWidth / fontSize | 0;
+        canvas.width = winWidth;
+        canvas.height = winHeight;
+        for (let i = 0; i < fontNum; i++) {
+            arrIndex[i] = 1;
+        }
+
+       
+        !function draw() {
+            var zifu = (Math.random() * 36 | 0).toString(36)[Math.random() > 0.5 ? 'toLocaleLowerCase' : 'toLocaleUpperCase']();
+            ctx.fillStyle = 'rgba(0,0,0,0.05)';
+            ctx.fillRect(0, 0, winWidth, winHeight);
+            for (var i = 0; i < fontNum; i++) {
+
+                ctx.font = `${fontSize}px 黑体 bold`;
+                ctx.fillStyle = '#0c3';
+                ctx.fillText(zifu, fontSize * i, arrIndex[i] * fontSize);
+                arrIndex[i]++;
+                if (arrIndex[i] * fontSize > winHeight && Math.random() > 0.99) {
+                    arrIndex[i] = 0;
+                }
+            }
+
+            setTimeout(draw, 60);
+        }()
+
+
+
+    </script>
+</body>
+
+</html>
